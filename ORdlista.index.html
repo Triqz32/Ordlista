@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Word Dictionary</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    min-height:100vh;
+}
+
+h1{
+    text-align:center;
+    padding:40px 0;
+    font-size:40px;
+    letter-spacing:2px;
+}
+
+#wordContainer{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+/* word cards */
+
+.word{
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius:12px;
+    padding:20px;
+    margin-bottom:20px;
+    transition:0.3s;
+    border:1px solid rgba(255,255,255,0.15);
+}
+
+/* hover effect */
+
+.word:hover{
+    transform: translateY(-5px) scale(1.02);
+    box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+.word h2{
+    margin:0 0 10px 0;
+    font-size:26px;
+    color:#00e5ff;
+}
+
+.word p{
+    margin:0;
+    line-height:1.6;
+    color:#e0e0e0;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    opacity:0.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>📚 Min Ord Lista 🥀</h1>
+
+<div id="wordContainer"></div>
+
+<footer>
+Gjord av Elias/Ilyas
+</footer>
+
+<script>
+
+// Ord Listan 
+
+const words = [
+{
+word: "Kryptering",
+meaning: "Att göra information oläslig för att skydda den"
+},
+{
+word: "Nätverk",
+meaning: "Flera datorer som är kopplade till varandra"
+},
+{
+word: "Protokoll",
+meaning: "Regler för hur data skickas över nätverk"
+},
+{
+word: "Molntjänst",
+meaning: "Tjänster och lagring som finns på internet istället för din dator"
+},
+{
+word: "Algoritm",
+meaning: "En steg för steg beskrivning av hur ett problem ska lösas."
+},
+{
+word: "Variabel",
+meaning: "En plats i minnet där man lagrar ett värde."
+},
+{
+word: "Datatyp",
+meaning: "Bestämmer vilken typ av data en variabel innehåller."
+},
+{
+word: "Sträng",
+meaning: "Text i ett program."
+},
+{
+word: "Heltal",
+meaning: "Ett helt nummer utan decimaler"
+},
+{
+word: "Flyttal",
+meaning: "Tal med Decimaler"
+},
+{
+word: "Boolesk",
+meaning: "En datatyp som bara kan vara true eller false"
+},
+{
+word: "Operator",
+meaning: "Symboler som gör beräkningar eller jämförelser"
+},
+{
+word: "Villkorssats",
+meaning: "Kod som körs bara om ett visst vilkor är sant"
+},
+{
+word: "Loop",
+meaning: "Kod som upprepas flera gånger"
+},
+{
+word: "For-Loop",
+meaning: "En loop som körs ett bestämt antal gånger"
+},
+{
+word: "White-loop",
+meaning: "En loop som kors så länge ett vilkor är sant"
+},
+{
+word: "Funktion",
+meaning: "Ett Block kod som gör en specifik uppgift och kan användas flera gånger"
+},
+{
+word: "Metod",
+meaning: "En funktion som hör till en klass eller ett objekt"
+},
+{
+word: "Parameter",
+meaning: "Ett värde som en funktion tar emot"
+},
+{
+word: "Argument",
+meaning: "Det faktiska värder som skickas in i en funktion"
+},
+{
+word: "Klass",
+meaning: "En mall för att skapa objekt i objektorienterad programmering"
+},
+{
+word: "Obejkt",
+meaning: "En instants av en klass med egna värden och funktioner"
+},
+{
+word: "Array",
+meaning: "En samling av flera värden av samma typ"
+},
+{
+word: "Lista",
+meaning: "En datasruktur som kan innehålla flera värden och kan andäras i storlek"
+},
+{
+word: "Index",
+meaning: "Positionen för ett elment i en lista eller array"
+},
+{
+word: "Kompilator",
+meaning: "Ett program som översätter källkod till maskinkod"
+},
+{
+word: "Interpreter",
+meaning: "Ett prgram som kör kod rad för rad direkt"
+},
+{
+word: "Syntax",
+meaning: "Reglerna för hur kod måste skrivas i ett programmeringsspråk"
+},
+{
+word: "Debugga",
+meaning: "Att hitta och fixa fel i kod"
+},
+{
+word: "Bug",
+meaning: "Ett fel i ett program"
+},
+{
+word: "Kod",
+meaning: "Instruktioner skriva i ett programmeringsspråk"
+},
+{
+word: "Källkod",
+meaning: "Den ursprunliga kod som programmeraren skriver"
+},
+{
+word: "Program",
+meaning: "Ett färdigt system av kod som utför en uppgift på en dator"
+},
+{
+word: "Programvara",
+meaning: "Alla typer av program som körs på en dator"
+},
+{
+word: "Hårdvara",
+meaning: "De fysiska delarna av en dator"
+},
+{
+word: "Databas",
+meaning: "En organiserad samling av data som kan lagras och hämtas"
+},
+{
+word: "Server",
+meaning: "En dator som ger data eller tjänster till andra datorer"
+},
+{
+word: "Klient",
+meaning: "En dator eller ett program som använder tjänster från en server"
+},
+{
+word: "API",
+meaning: "Ett system som låter olika program kommunicera med varandra"
+},
+{
+word: "Ramverk",
+meaning: "Ett färdigt system med verktyg som gör programemering snabbare"
+},
+{
+word: "Bibliotek",
+meaning: "Samling av färdiga funktioner som pragrammerare kan använda"
+},
+{
+word: "Git",
+meaning: "En system för att spara och spåra ändringar i kod"
+},
+{
+word: "Versionhantering",
+meaning: "Att hålla red på olika versioner av kod"
+},
+{
+word: "Kommandorad",
+meaning: "Ett sätt att styra datorn genom att skriva textkommandon"
+},
+{
+word: "Terminal",
+meaning: "Program där man använder kommandoraden"
+},
+];
+
+const container = document.getElementById("wordContainer");
+
+words.forEach(item => {
+
+const div = document.createElement("div");
+div.className = "word";
+
+div.innerHTML = `
+<h2>${item.word}</h2>
+<p>${item.meaning}</p>
+`;
+
+container.appendChild(div);
+
+});
+
+</script>
+
+</body>
+</html>
